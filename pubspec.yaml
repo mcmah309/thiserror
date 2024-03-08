@@ -1,6 +1,6 @@
 name: thiserror
-description: Error Enum handling library for Dart.
-version: 0.2.1
+description: A library for concisely defining error types (error enums / sealed classes) in Dart.
+version: 0.3.0
 repository: https://github.com/mcmah309/thiserror
 
 environment:
