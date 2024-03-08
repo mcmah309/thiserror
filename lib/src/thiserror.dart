@@ -1,4 +1,3 @@
-
 abstract class ThisError<T extends ThisError<T>> {
   static final _innerNumberCapture = RegExp(r'{(\d+)}');
 
@@ -19,7 +18,8 @@ abstract class ThisError<T extends ThisError<T>> {
     if (template == null) {
       return "$T";
     }
-    final replacedTemplate = template!.replaceAllMapped(_innerNumberCapture, (Match match) {
+    final replacedTemplate =
+        template!.replaceAllMapped(_innerNumberCapture, (Match match) {
       int index = int.parse(match.group(1)!);
       if (index < values!.length) {
         return values![index].toString();

@@ -6,7 +6,8 @@ sealed class IoError extends ThisError<IoError> {
 }
 
 final class OneTemplateVariable extends IoError {
-  OneTemplateVariable(String path) : super("Could not read '{0}' from disk.", [path]);
+  OneTemplateVariable(String path)
+      : super("Could not read '{0}' from disk.", [path]);
 }
 
 final class TwoTemplateVariables extends IoError {
@@ -28,7 +29,8 @@ final class Empty extends IoError {
 }
 
 final class TwoTemplateVariablesOutOfOrder extends IoError {
-  TwoTemplateVariablesOutOfOrder(String one, String two) : super("Could not write '{1}' to '{0}' on disk.", [one, two]);
+  TwoTemplateVariablesOutOfOrder(String one, String two)
+      : super("Could not write '{1}' to '{0}' on disk.", [one, two]);
 }
 
 void main() {
@@ -43,17 +45,20 @@ void main() {
       case Empty():
       case TwoTemplateVariablesOutOfOrder():
     }
-    expect(x.toString(), "IoError: Could not read '/home/user/file' from disk.");
+    expect(
+        x.toString(), "IoError: Could not read '/home/user/file' from disk.");
   });
 
   test("twoTemplateVariables", () {
     final x = TwoTemplateVariables("bing bong", "/home/user/file");
-    expect(x.toString(), "IoError: Could not write 'bing bong' to '/home/user/file' on disk.");
+    expect(x.toString(),
+        "IoError: Could not write 'bing bong' to '/home/user/file' on disk.");
   });
   test("oneTemplateVariableTwoTimes", () {
     final value = "bing bong";
     final x = OneTemplateVariableTwoTimes(value);
-    expect(x.toString(), "IoError: Make sure that bing bong is correct bing bong");
+    expect(
+        x.toString(), "IoError: Make sure that bing bong is correct bing bong");
   });
 
   test("noTemplateVariable", () {
@@ -70,6 +75,7 @@ void main() {
     final value = "bing bong";
     final diskpath = "/home/user/file";
     final x = TwoTemplateVariablesOutOfOrder(value, diskpath);
-    expect(x.toString(), "IoError: Could not write '/home/user/file' to 'bing bong' on disk.");
+    expect(x.toString(),
+        "IoError: Could not write '/home/user/file' to 'bing bong' on disk.");
   });
 }
