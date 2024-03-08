@@ -2,26 +2,26 @@ import 'package:thiserror/thiserror.dart';
 import 'package:test/test.dart';
 
 sealed class IoError extends ThisError<IoError> {
-  const IoError([super.template, super.values]);
+  const IoError([super.toStringFunc]);
 }
 
 final class OneTemplateVariable extends IoError {
   OneTemplateVariable(String path)
-      : super("Could not read '{0}' from disk.", [path]);
+      : super(() => "Could not read '$path' from disk.");
 }
 
 final class TwoTemplateVariables extends IoError {
   TwoTemplateVariables(Object obj, String path)
-      : super("Could not write '{0}' to '{1}' on disk.", [obj, path]);
+      : super(() => "Could not write '$obj' to '$path' on disk.");
 }
 
 final class OneTemplateVariableTwoTimes extends IoError {
   OneTemplateVariableTwoTimes(String path)
-      : super("Make sure that {0} is correct {0}", [path, path]);
+      : super(() => "Make sure that $path is correct $path");
 }
 
 final class NoTemplateVariables extends IoError {
-  NoTemplateVariables() : super("An unknown error occurred.");
+  NoTemplateVariables() : super(() => "An unknown error occurred.");
 }
 
 final class Empty extends IoError {
@@ -30,7 +30,7 @@ final class Empty extends IoError {
 
 final class TwoTemplateVariablesOutOfOrder extends IoError {
   TwoTemplateVariablesOutOfOrder(String one, String two)
-      : super("Could not write '{1}' to '{0}' on disk.", [one, two]);
+      : super(() => "Could not write '$two' to '$one' on disk.");
 }
 
 void main() {

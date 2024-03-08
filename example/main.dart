@@ -1,21 +1,21 @@
 import 'package:thiserror/thiserror.dart';
 
 sealed class IoError extends ThisError<IoError> {
-  const IoError([super.template, super.values]);
+  const IoError([super.toStringFunc]);
 }
 
 final class IoErrorDiskRead extends IoError {
-  IoErrorDiskRead(String path) : super("Could not read '{0}' from disk.", [path]);
+  IoErrorDiskRead(String path) : super(() => "Could not read '$path' from disk.");
 }
 
 final class IoErrorDiskWrite extends IoError {
   Object obj;
 
-  IoErrorDiskWrite(this.obj, String path) : super("Could not write '{0}' to '{1}' on disk.", [obj, path]);
+  IoErrorDiskWrite(this.obj, String path) : super(() => "Could not write '$obj' to '$path' on disk.");
 }
 
 final class IoErrorUnknown extends IoError {
-  IoErrorUnknown() : super("An unknown error occurred.");
+  IoErrorUnknown() : super(() => "An unknown error occurred.");
 }
 
 final class IoErrorEmpty extends IoError {
