@@ -3,7 +3,7 @@
 import 'package:thiserror/thiserror.dart';
 
 sealed class IoError extends ThisError<IoError> {
-  const IoError([super.toStringFunc]);
+  const IoError([super.stringifiable]);
 }
 
 final class IoErrorDiskRead extends IoError {

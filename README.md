@@ -16,7 +16,7 @@ Extending the `ThisError` class allows you to define errors with an optional str
 Here is an example of modeling an `IoError` with the [rust_core](https://github.com/mcmah309/rust_core) `Result` type.
 ```dart
 sealed class IoError extends ThisError<IoError> {
-  const IoError([super.toStringFunc]);
+  const IoError([super.stringifiable]);
 }
 
 final class IoErrorDiskRead extends IoError {
