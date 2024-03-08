@@ -1,4 +1,8 @@
 # thiserror
+[![Pub Version](https://img.shields.io/pub/v/thiserror.svg)](https://pub.dev/packages/thiserror)
+[![Dart Package Docs](https://img.shields.io/badge/documentation-pub.dev-blue.svg)](https://pub.dev/documentation/thiserror/latest/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-purple.svg)](https://opensource.org/licenses/MIT)
+[![Build Status](https://github.com/mcmah309/thiserror/actions/workflows/dart.yml/badge.svg)](https://github.com/mcmah309/thiserror/actions)
 
 thiserror is a library for conveniently writing Error enums (sealed classes) in Dart and is based off the Rust crate
 with the same name [thiserror](https://github.com/dtolnay/thiserror).
