@@ -12,7 +12,7 @@ abstract class ThisError<T extends ThisError<T>> {
     }
     if (stringifiable is Object? Function()) {
       final obj = stringifiable();
-      if (obj == null){
+      if (obj == null) {
         return "$T";
       }
       return "$T: $obj";

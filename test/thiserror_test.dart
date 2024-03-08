@@ -6,8 +6,7 @@ sealed class IoError extends ThisError<IoError> {
 }
 
 final class OneVariable extends IoError {
-  OneVariable(String path)
-      : super(() => "Could not read '$path' from disk.");
+  OneVariable(String path) : super(() => "Could not read '$path' from disk.");
 }
 
 final class TwoVariables extends IoError {
@@ -29,13 +28,11 @@ final class Empty extends IoError {
 }
 
 final class ObjectFunction extends IoError {
-  ObjectFunction()
-      : super(() => 1);
+  ObjectFunction() : super(() => 1);
 }
 
 final class NullFunction extends IoError {
-  NullFunction()
-      : super(() => null);
+  NullFunction() : super(() => null);
 }
 
 void main() {
@@ -79,13 +76,11 @@ void main() {
 
   test("ObjectFunction", () {
     final x = ObjectFunction();
-    expect(x.toString(),
-        "IoError: 1");
+    expect(x.toString(), "IoError: 1");
   });
 
   test("NullFunction", () {
     final x = NullFunction();
-    expect(x.toString(),
-        "IoError");
+    expect(x.toString(), "IoError");
   });
 }
