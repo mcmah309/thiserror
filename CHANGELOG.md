@@ -1,3 +1,7 @@
+## 0.3.2
+
+- Documentation update
+
 ## 0.3.1
 
 - Allow passing any object
@@ -8,7 +12,7 @@
 
 ## 0.2.1
 
-- documentation update
+- Documentation update
 
 ## 0.2.0
 
