@@ -5,13 +5,15 @@ sealed class IoError extends ThisError<IoError> {
 }
 
 final class IoErrorDiskRead extends IoError {
-  IoErrorDiskRead(String path) : super(() => "Could not read '$path' from disk.");
+  IoErrorDiskRead(String path)
+      : super(() => "Could not read '$path' from disk.");
 }
 
 final class IoErrorDiskWrite extends IoError {
   Object obj;
 
-  IoErrorDiskWrite(this.obj, String path) : super(() => "Could not write '$obj' to '$path' on disk.");
+  IoErrorDiskWrite(this.obj, String path)
+      : super(() => "Could not write '$obj' to '$path' on disk.");
 }
 
 final class IoErrorUnknown extends IoError {
@@ -33,14 +35,14 @@ IoError writeToDisk(Object objToWrite) {
 void main() {
   final err = writeToDisk("data here");
   switch (err) {
-      case IoErrorDiskRead():
-      // your code here
-      case IoErrorDiskWrite(:final obj):
-      // your code here
-      case IoErrorUnknown():
-      // your code here
-      case IoErrorEmpty():
-      // your code here
+    case IoErrorDiskRead():
+    // your code here
+    case IoErrorDiskWrite(:final obj):
+    // your code here
+    case IoErrorUnknown():
+    // your code here
+    case IoErrorEmpty():
+    // your code here
   }
   print(err);
   // IoError: Could not write 'data here' to '/home/user/data_file' on disk.
