@@ -1,10 +1,10 @@
 name: thiserror
 description: Error Enum handling library for Dart.
-version: 0.0.1
+version: 0.2.0
 repository: https://github.com/mcmah309/thiserror
 
 environment:
-  sdk: ^3.3.0
+  sdk: ^3.0.0
 
 # Add regular dependencies here.
 dependencies:
