@@ -19,11 +19,11 @@ final class IoErrorDiskWrite extends IoError {
 }
 
 final class IoErrorUnknown extends IoError {
-  IoErrorUnknown() : super(() => "An unknown error occurred.");
+  const IoErrorUnknown() : super("An unknown error occurred.");
 }
 
 final class IoErrorEmpty extends IoError {
-  IoErrorEmpty();
+  const IoErrorEmpty();
 }
 
 // Usually, you would use a result type like from the `rust_core` package.

@@ -9,7 +9,7 @@ with the same name [thiserror](https://github.com/dtolnay/thiserror).
 
 ## ThisError
 
-Extending the `ThisError` class allows you to define errors with a string representation computed at display time. 
+Extending the `ThisError` class allows you to define errors with an optional string representation possibly computed at display time. 
 
 ### How To Use
 
@@ -30,7 +30,7 @@ final class IoErrorDiskWrite extends IoError {
 }
 
 final class IoErrorUnknown extends IoError {
-  IoErrorUnknown() : super(() => "An unknown error occurred.");
+  const IoErrorUnknown() : super("An unknown error occurred.");
 }
 
 Result<(), IoError> writeToDisk(Object objToWrite) {

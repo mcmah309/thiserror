@@ -1,16 +1,23 @@
 /// Extending the [ThisError] class allows you to define errors with a string representation computed at display time.
 abstract class ThisError<T extends ThisError<T>> {
-  final String Function()? _toStringFunc;
+  final Object? _stringifiable;
 
-  const ThisError([this._toStringFunc]);
+  const ThisError([this._stringifiable]);
 
   @override
   String toString() {
-    final message = this._toStringFunc?.call();
-    if (message != null) {
-      return "$T: $message";
+    final stringifiable = _stringifiable;
+    if (stringifiable == null) {
+      return "$T";
     }
-    return "$T";
+    if (stringifiable is Object? Function()) {
+      final obj = stringifiable();
+      if (obj == null){
+        return "$T";
+      }
+      return "$T: $obj";
+    }
+    return "$T: $stringifiable";
   }
 
   @override

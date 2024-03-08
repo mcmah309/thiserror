@@ -5,77 +5,87 @@ sealed class IoError extends ThisError<IoError> {
   const IoError([super.toStringFunc]);
 }
 
-final class OneTemplateVariable extends IoError {
-  OneTemplateVariable(String path)
+final class OneVariable extends IoError {
+  OneVariable(String path)
       : super(() => "Could not read '$path' from disk.");
 }
 
-final class TwoTemplateVariables extends IoError {
-  TwoTemplateVariables(Object obj, String path)
+final class TwoVariables extends IoError {
+  TwoVariables(Object obj, String path)
       : super(() => "Could not write '$obj' to '$path' on disk.");
 }
 
-final class OneTemplateVariableTwoTimes extends IoError {
-  OneTemplateVariableTwoTimes(String path)
+final class OneVariableTwoTimes extends IoError {
+  OneVariableTwoTimes(String path)
       : super(() => "Make sure that $path is correct $path");
 }
 
-final class NoTemplateVariables extends IoError {
-  NoTemplateVariables() : super(() => "An unknown error occurred.");
+final class JustAString extends IoError {
+  JustAString() : super("An unknown error occurred.");
 }
 
 final class Empty extends IoError {
   Empty();
 }
 
-final class TwoTemplateVariablesOutOfOrder extends IoError {
-  TwoTemplateVariablesOutOfOrder(String one, String two)
-      : super(() => "Could not write '$two' to '$one' on disk.");
+final class ObjectFunction extends IoError {
+  ObjectFunction()
+      : super(() => 1);
+}
+
+final class NullFunction extends IoError {
+  NullFunction()
+      : super(() => null);
 }
 
 void main() {
-  test("oneTemplateVariable", () {
+  test("OneVariable", () {
     final diskpath = "/home/user/file";
-    final IoError x = OneTemplateVariable(diskpath);
+    final IoError x = OneVariable(diskpath);
     switch (x) {
-      case OneTemplateVariable():
-      case TwoTemplateVariables():
-      case OneTemplateVariableTwoTimes():
-      case NoTemplateVariables():
+      case OneVariable():
+      case TwoVariables():
+      case OneVariableTwoTimes():
+      case JustAString():
       case Empty():
-      case TwoTemplateVariablesOutOfOrder():
+      case ObjectFunction():
+      case NullFunction():
     }
     expect(
         x.toString(), "IoError: Could not read '/home/user/file' from disk.");
   });
 
-  test("twoTemplateVariables", () {
-    final x = TwoTemplateVariables("bing bong", "/home/user/file");
+  test("TwoVariables", () {
+    final x = TwoVariables("bing bong", "/home/user/file");
     expect(x.toString(),
         "IoError: Could not write 'bing bong' to '/home/user/file' on disk.");
   });
-  test("oneTemplateVariableTwoTimes", () {
+  test("OneVariableTwoTimes", () {
     final value = "bing bong";
-    final x = OneTemplateVariableTwoTimes(value);
+    final x = OneVariableTwoTimes(value);
     expect(
         x.toString(), "IoError: Make sure that bing bong is correct bing bong");
   });
 
-  test("noTemplateVariable", () {
-    final x = NoTemplateVariables();
+  test("JustAString", () {
+    final x = JustAString();
     expect(x.toString(), "IoError: An unknown error occurred.");
   });
 
-  test("empty", () {
+  test("Empty", () {
     final x = Empty();
     expect(x.toString(), "IoError");
   });
 
-  test("twoTemplateVariables", () {
-    final value = "bing bong";
-    final diskpath = "/home/user/file";
-    final x = TwoTemplateVariablesOutOfOrder(value, diskpath);
+  test("ObjectFunction", () {
+    final x = ObjectFunction();
     expect(x.toString(),
-        "IoError: Could not write '/home/user/file' to 'bing bong' on disk.");
+        "IoError: 1");
+  });
+
+  test("NullFunction", () {
+    final x = NullFunction();
+    expect(x.toString(),
+        "IoError");
   });
 }
