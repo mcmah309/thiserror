@@ -1,3 +1,4 @@
+/// Extending the [ThisError] class allows you to define errors with a string representation computed at display time.
 abstract class ThisError<T extends ThisError<T>> {
   static final _innerNumberCapture = RegExp(r'{(\d+)}');
 
